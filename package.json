@@ -1,0 +1,16 @@
+{
+  "name": "pidp1-hacker-replicant",
+  "version": "0.1.0",
+  "private": false,
+  "description": "AI tutor/copilot chat panel for Oscar Vermeulen's PiDP-1 replica -- knows Spacewar!, MACRO, and LISP on the PDP-1, and can optionally mount a paper tape and boot it. LLM-agnostic: works with any OpenAI-compatible backend (Ollama locally by default, or any hosted provider).",
+  "type": "module",
+  "main": "server.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0"
+  }
+}

@@ -1,0 +1,26 @@
+# Example systemd unit for pidp1-readin-server.py -- runs ON THE MACHINE
+# whose panel driver you want the agent to be able to pulse (for the PiDP-1
+# that's the Pi driving the replica itself). Needs:
+#   - read/write access to the shared-memory segment /tmp/pdp1_panel that
+#     the panel_pidp1 driver maintains
+#   - permission to send SIGSTOP/SIGCONT to the panel_pidp1 process (same
+#     user it runs as, or root)
+#   - the emulator's TCP command port (localhost:1040) reachable
+#
+# Copy to /etc/systemd/system/pidp1-readin-server.service, adjust the
+# path/user, then:
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now pidp1-readin-server
+
+[Unit]
+Description=PiDP-1 boot-API (shared-memory panel bridge for the Hacker Replicant)
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/python3 /opt/pidp1-hacker-replicant/pidp1-readin-server.py
+Restart=always
+RestartSec=5
+User=pi
+
+[Install]
+WantedBy=multi-user.target
